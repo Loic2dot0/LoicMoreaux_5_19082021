@@ -36,39 +36,45 @@
             </div>
         </header>
 
-        <section class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="jumbotron text-center py-5 mb-5 rounded-3">
-                        <h1 class="mt-5">Bienvenue chez Orinoco</h1>
-
-                        <h2 class="mt-4 mb-5">Découvrez notre gamme d'apareil photo vintage.</h2>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
         <section class="container main-container">
-            <div class="row mb-3">
-                <div class="col">
-                   <input class="form-control" id="searchInput" type="text" placeholder="Rechercher un article">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{chemin de l'image}" class="img-fluid rounded-start" alt="{chemin de l'image}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <form>
+                                <h1 class="card-title">{Nom du produit}</h1>
+                                
+                                <p class="card-text">{Description du produit}</p>
+                                
+                                <p class="card-text h3">{Prix}</p>
+                                
+                                <div class="form-group">
+                                    <select class="form-select" aria-label="Choisissez votre objectif">
+                                        <option selected>Sélectionnez un objectif</option>
+                                        <option value="{lenses}">{lenses}</option>
+                                        <option value="{lenses}">{lenses}</option>
+                                    </select>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button class="btn btn-secondary" type="button">Ajouter au panier</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
                 </div>
             </div>
-            <div id="listArticle" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                <div class="col mb-3">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="{Photo produit}" >
-                        <div class="card-body">
-                            <h2 class="card-title">{Nom du produit}</h2>
-                            <p class="card-text">{Description du produit}<p>
-                            <p>{Prix}</p>
-                            <p class="text-center"><a href="produit.html" class="btn btn-light stretched-link">Voir le produit</a></p>
-                        </div>
-                    </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <a href=".." class="btn btn-light">Retour à la liste des produits</a>
                 </div>
             </div>
         </section>
+       
 
         <footer class="container-fluid bg-light  mt-5 py-5">
             <div class="row">
