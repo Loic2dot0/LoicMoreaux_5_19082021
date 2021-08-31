@@ -29,6 +29,11 @@ function displayProduct(product){
     cardProduct.innerHTML = ('<div class="card"><img class="card-img-top" src="' + product.imageUrl + 
         '" alt="' + product.name + '"><div class="card-body"><h2 class="card-title">' + product.name +
         '</h2><p class="card-text">' + product.description + 
-        '</p><p>' + product.price + '€</p><p class="text-center"><a href="produit.html?_id=' + product._id + 
+        '</p><p>' + convertDisplayPrice(product.price) + '</p><p class="text-center"><a href="produit.html?_id=' + product._id + 
         '" class="btn btn-info stretched-link">Voir le produit</a></p></div>');
+}
+
+function convertDisplayPrice(oldPrice){ // convertion de l'affichage du prix
+    let price = oldPrice /100;
+    return Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'EUR'}).format(price);
 }
