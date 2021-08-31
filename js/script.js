@@ -90,6 +90,12 @@ function displayProduct(product){ //Affichage de la fiche produit complète
     document.querySelector("p.card-text").textContent = product.description;
     document.querySelector("p.h3").textContent = convertDisplayPrice(product.price);
 
+    for(let i in product.lenses){ // boucle pour parcourir le tableau
+        let lensesOption = document.createElement("option");
+        document.getElementById("lenses").appendChild(lensesOption);
+        lensesOption.setAttribute("value", product.lenses[i]);
+        lensesOption.innerHTML = product.lenses[i];
+    }
 }
 
 
