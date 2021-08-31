@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="style/style.css">
+
+        <script src="js/script.js"></script>       
     </head>
     <body>
         <header class="container-fluid px-5 mb-3 mb-md-5 bg-light">
@@ -29,31 +31,30 @@
                     <div class="jumbotron text-center py-5 mb-3 mb-md-5 rounded-3">
                         <h1 class="mt-5">Bienvenue chez Orinoco</h1>
 
-                        <h2 class="mt-4 mb-5">Découvrez notre gamme d'apareil photo vintage.</h2>
+                        <h2 class="mt-4 mb-5">Découvrez notre gamme d'appareil photo vintage.</h2>
                     </div>
                 </div>
             </div>
-
         </section>
 
-        <section class="container main-container">
+        <section id="articleSection" class="container main-container">
             <div class="row mb-3">
                 <div class="col">
                    <input class="form-control" id="searchInput" type="text" placeholder="Rechercher un article">
                 </div>
             </div>
             <div id="listArticle" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                <div class="col mb-3">
+                <!--<div class="col mb-3">
                     <div class="card">
                         <img class="card-img-top" src="" alt="{Photo produit}" >
                         <div class="card-body">
                             <h2 class="card-title">{Nom du produit}</h2>
-                            <p class="card-text">{Description du produit}<p>
+                            <p class="card-text">{Description du produit}</p>
                             <p>{Prix}</p>
                             <p class="text-center"><a href="produit.html" class="btn btn-info stretched-link">Voir le produit</a></p>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </section>
 
@@ -70,5 +71,8 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <script>
+            connectApi();            
+        </script> 
     </body>
 </html>
