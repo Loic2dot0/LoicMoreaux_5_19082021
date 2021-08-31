@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="style/style.css">
+
+        <script src="js/script.js"></script> 
     </head>
     <body>
         <header class="container-fluid px-5 mb-3 mb-md-5 bg-light">
@@ -23,10 +25,10 @@
             </div>
         </header>
 
-        <section class="container main-container">
+        <section id="productPage" class="container main-container">
             <div class="card">
                 <div class="row g-0">
-                    <div class="col-md-4">
+                    <div id="divImg" class="col-md-4">
                         <img src="{chemin de l'image}" class="img-fluid rounded-start" alt="{chemin de l'image}">
                     </div>
                     <div class="col-md-8">
@@ -76,5 +78,8 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <script>
+            getProduct();               
+        </script> 
     </body>
 </html>
