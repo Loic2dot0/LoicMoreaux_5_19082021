@@ -43,6 +43,8 @@ function displayBasket(){
             article = JSON.parse(article);
             console.log(myBasket.key(i));
             console.log(article);
+            let rowBasket = document.createElement("div");
+
         }
     }
 }
@@ -53,3 +55,11 @@ function voidBasket(){
     document.getElementById("btnSubmit").style.backgroundColor = "#f8f9fa";
     document.getElementById("btnSubmit").setAttribute("disabled", "");
 }
+
+
+window.addEventListener("load", function() {
+    basketCount();
+    if(document.getElementById("listBasket")){
+        displayBasket();
+    }
+});

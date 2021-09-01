@@ -28,13 +28,13 @@ function displayListProducts(arrayListProduct){
 
 function displayCardProduct(product){
     let cardProduct = document.createElement("div");
-    document.getElementById("listArticle").appendChild(cardProduct);
     cardProduct.classList.add("col", "mb-3");
     cardProduct.innerHTML = ('<div class="card"><img class="card-img-top" src="' + product.imageUrl + 
         '" alt="' + product.name + '"><div class="card-body"><h2 class="card-title">' + product.name +
         '</h2><p class="card-text">' + product.description + 
         '</p><p>' + convertDisplayPrice(product.price) + '</p><p class="text-center"><a href="produit.html?_id=' + product._id + 
         '" class="btn btn-info stretched-link">Voir le produit</a></p></div>');
+        document.getElementById("listArticle").appendChild(cardProduct);
 }
 
 
@@ -51,7 +51,7 @@ function getProduct(){ // fonction principale de la page produit
     console.log('Id produit : ' +idProduct);
     let urlProduct = "http://localhost:3000/api/cameras/" + idProduct;
     console.log('url du prduit : ' +urlProduct);
-    connectApiProduct(urlProduct);
+    getApiProduct(urlProduct);
   }
 
 
@@ -70,7 +70,7 @@ function getIdProduct(url){ //fonction de récupération de l'id du produit
 }
 
 
-function connectApiProduct(urlProduct){
+function getApiProduct(urlProduct){
     fetch(urlProduct) //Requete de type GET envoyer à l'API
         .then(function(res) { //test de la promise
             if (res.ok) {
@@ -96,10 +96,10 @@ function displayProduct(product){ //Affichage de la fiche produit complète
     document.querySelector("p.h3").textContent = convertDisplayPrice(product.price);
 
     for(let i in product.lenses){ // boucle pour parcourir le tableau
-        let lensesOption = document.createElement("option");
-        document.getElementById("lenses").appendChild(lensesOption);
+        let lensesOption = document.createElement("option");       
         lensesOption.setAttribute("value", product.lenses[i]);
         lensesOption.innerHTML = product.lenses[i];
+        document.getElementById("lenses").appendChild(lensesOption);
     }
 }
 
@@ -107,10 +107,18 @@ function displayProduct(product){ //Affichage de la fiche produit complète
 
 function errorMessage(idParent, message){ //Fonction de message d'erreur
     let divError = document.createElement("div");
-    let blocParent = document.getElementById(idParent);
-    blocParent.appendChild(divError);
-    
     divError.classList.add("alert", "alert-danger");
     divError.setAttribute("role", "alert");
     divError.innerHTML = message;
+    document.getElementById(idParent).appendChild(divError);
 }
+
+
+window.addEventListener("load", function() {
+    if(document.getElementById("listArticle")){
+        connectApi();
+    }
+    if(document.getElementById("productPage")){
+        getProduct();
+    }
+});
