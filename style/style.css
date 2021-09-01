@@ -8,3 +8,14 @@
     color: #f6e7f1;
     text-shadow: #000 1px 1px 5px;
 }
+
+#basket-count{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    font-size: 0.3em;
+}
