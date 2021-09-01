@@ -1,3 +1,5 @@
+var actualProduct = 0;
+
 //page Index
 function connectApi(){
     fetch("http://localhost:3000/api/cameras") //Requete de type GET envoyer à l'API
@@ -7,11 +9,12 @@ function connectApi(){
             }
         })
         .then(function(value) {
+            console.log("Contenu de l'API V");
             console.log(value);
             displayListProducts(value); // appel de la fonction d'affichage de la liste des produits
         })
         .catch(function(err) {
-            console.log(err);
+            console.log('catch erreur : ' +err);
         });
 }
 
@@ -45,16 +48,16 @@ function convertDisplayPrice(oldPrice){ // convertion de l'affichage du prix
 function getProduct(){ // fonction principale de la page produit
     let url = getUrl();
     let idProduct = getIdProduct(url);
-    console.log(idProduct);
+    console.log('Id produit : ' +idProduct);
     let urlProduct = "http://localhost:3000/api/cameras/" + idProduct;
-    console.log(urlProduct);
+    console.log('url du prduit : ' +urlProduct);
     connectApiProduct(urlProduct);
   }
 
 
 function getUrl(){ // fonction pour récupérer l'url de la page actuelle
     let url = new URL(window.location.href);
-    console.log(url);
+    console.log('url de la page actuelle : ' +url);
     return url;
 }
 
@@ -75,7 +78,9 @@ function connectApiProduct(urlProduct){
             }
         })
         .then(function(value) {
-            console.log(value);
+            actualProduct = value;
+            console.log('Produit actuel V');
+            console.log(actualProduct);
             displayProduct(value);
         })
         .catch(function(err) {
