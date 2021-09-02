@@ -43,6 +43,7 @@ function removeBasket(key){ // fonction pour la suppression d'un article du pani
     document.location.reload(); //Recharge la page pour actualiser le panier
 }
 
+
 function clearBasket(){ //fonction pour vider le panier
     myBasket.clear(); // vide le localstorage
     basketCount(); //mise a jour de l'affichage du compteur
@@ -62,7 +63,9 @@ function displayBasket(){ // fonction d'affichage du panier
             debug && console.log(article);
             displayRowBasket(article, myBasket.key(i)); // appel de la fonction d'affichage de la ligne du panier
             totalBasket += article.price; //mise a jour du prix total du panier
+            products.push(article._id); //ajoute d'id de l'article dans un array pour la validation de la commande
             debug && console.log("Total panier :" + convertDisplayPrice(totalBasket));
+            debug && console.log(products);
         }
         displayTotalPrice(); // appel de la fonction d'affichage du prix total du panier
     }
