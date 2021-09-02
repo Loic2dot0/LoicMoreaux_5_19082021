@@ -8,7 +8,12 @@ function basketLength(){ // fonction qui returne le nombre d'élément dans le p
 
 
 function keyName(){ // fonction pour nommer les clés pour le localstorage
-    return 'article' + basketLength();
+    //return 'article' + basketLength();
+    let key = Math.floor(Math.random()*1000000); //génère une clé aléatoire
+    while(myBasket.getItem(key)){ // Si la clé existe déjà on génère une nouvelle clé
+        key = Math.floor(Math.random()*1000000);
+    }
+    return key;
 }
 
 
@@ -33,6 +38,11 @@ function addBasket(){ //fonction pour ajouter un article dans le panier
 }
 
 
+function removeBasket(key){ // fonction pour la suppression d'un article du panier
+    myBasket.removeItem(key); //supprime l'article du localstorage
+    document.location.reload(); //Recharge la page pour actualiser le panier
+}
+
 function clearBasket(){ //fonction pour vider le panier
     myBasket.clear(); // vide le localstorage
     basketCount(); //mise a jour de l'affichage du compteur
@@ -48,7 +58,7 @@ function displayBasket(){ // fonction d'affichage du panier
         for(let i = 0; i < basketLength(); i++){ //parcours du localstorage pour afficher le contenu
             let article = myBasket.getItem(myBasket.key(i)); // récupération d'un produit
             article = JSON.parse(article); // conversion de la chaine de caractère au format JSON
-            debug && console.log(myBasket.key(i));
+            debug && console.log('key product : ' +myBasket.key(i));
             debug && console.log(article);
             displayRowBasket(article, myBasket.key(i)); // appel de la fonction d'affichage de la ligne du panier
             totalBasket += article.price; //mise a jour du prix total du panier
@@ -63,8 +73,8 @@ function displayRowBasket(article, key){ // fonction d'affichage d'une ligne du 
     let rowBasket = document.createElement("tr");
     rowBasket.innerHTML = ('<td>' + article.name + '</td><td>' + article._id +
                         '</td><td class="text-end">' + convertDisplayPrice(article.price) +
-                        '</td><td class="text-end"><button class="btn btn-light" onclick="removeBasket(' + key
-                        + ')">Supprimer</button></td>');
+                        '</td><td class="text-end"><button class="btn btn-light" onclick="removeBasket(\'' + key
+                        + '\')">Supprimer</button></td>');
     document.getElementById("tableTbodyBasket").appendChild(rowBasket);
 }
 
