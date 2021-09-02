@@ -1,18 +1,18 @@
 var myBasket = localStorage;
-var totalBasket = 0;
+var totalBasket = 0; //variable pour le prix total du panier
 var products = [];
 
-function basketLength(){
+function basketLength(){ // fonction qui returne le nombre d'élément dans le panier
     return myBasket.length;
 }
 
 
-function keyName(){
+function keyName(){ // fonction pour nommer les clés pour le localstorage
     return 'article' + basketLength();
 }
 
 
-function basketCount(){
+function basketCount(){ //fonction pour l'affichage du compteur du nombre d'article présent dans le panier
     let count = basketLength();
     let displayCount = document.getElementById("basketCount");
     if(count == 0){
@@ -24,42 +24,42 @@ function basketCount(){
 }
 
 
-function addBasket(){
+function addBasket(){ //fonction pour ajouter un article dans le panier
     let key = keyName();
-    let productLinear = JSON.stringify(actualProduct);
-    myBasket.setItem(key, productLinear);
+    let productLinear = JSON.stringify(actualProduct); //convertion du JSON en chaine de caractère
+    myBasket.setItem(key, productLinear); //ajout du produit dans le localstorage
     debug && console.log(key+ ' = ' +myBasket.getItem(key));
-    basketCount();
+    basketCount(); //mise a jour de l'affichage du compteur
 }
 
 
-function clearBasket(){
-    myBasket.clear();
-    basketCount();
-    displayBasket();
+function clearBasket(){ //fonction pour vider le panier
+    myBasket.clear(); // vide le localstorage
+    basketCount(); //mise a jour de l'affichage du compteur
+    displayBasket(); //Actualisation de l'affichage du contenu du panier
 }
 
 
-function displayBasket(){
-    if(basketLength() == 0){
-        voidBasket();
+function displayBasket(){ // fonction d'affichage du panier
+    if(basketLength() == 0){ //test si le panier est vide
+        voidBasket(); //appel de la fonction en cas de panier vide
     }
     else{
-        for(let i = 0; i < basketLength(); i++){
-            let article = myBasket.getItem(myBasket.key(i));
-            article = JSON.parse(article);
+        for(let i = 0; i < basketLength(); i++){ //parcours du localstorage pour afficher le contenu
+            let article = myBasket.getItem(myBasket.key(i)); // récupération d'un produit
+            article = JSON.parse(article); // conversion de la chaine de caractère au format JSON
             debug && console.log(myBasket.key(i));
             debug && console.log(article);
-            displayRowBasket(article, myBasket.key(i));
-            totalBasket += article.price;
+            displayRowBasket(article, myBasket.key(i)); // appel de la fonction d'affichage de la ligne du panier
+            totalBasket += article.price; //mise a jour du prix total du panier
             debug && console.log("Total panier :" + convertDisplayPrice(totalBasket));
         }
-        displayTotalPrice();
+        displayTotalPrice(); // appel de la fonction d'affichage du prix total du panier
     }
 }
 
 
-function displayRowBasket(article, key){
+function displayRowBasket(article, key){ // fonction d'affichage d'une ligne du panier
     let rowBasket = document.createElement("tr");
     rowBasket.innerHTML = ('<td>' + article.name + '</td><td>' + article._id +
                         '</td><td class="text-end">' + convertDisplayPrice(article.price) +
@@ -69,23 +69,23 @@ function displayRowBasket(article, key){
 }
 
 
-function displayTotalPrice(){
+function displayTotalPrice(){ // fonction d'affichage du prix total du panier
     document.getElementById("totalBasket").innerHTML = convertDisplayPrice(totalBasket);
 }
 
 
-function voidBasket(){
+function voidBasket(){ // fonction qui gère l'affichage en cas de panier vide
     document.getElementById("tableBasket").style.display = "none";
     document.getElementById("btnClear").style.visibility = "hidden";
     document.getElementById("btnSubmit").style.backgroundColor = "#f8f9fa";
-    document.getElementById("btnSubmit").setAttribute("disabled", "");
+    document.getElementById("btnSubmit").setAttribute("disabled", ""); //désactive le bouton de validation de commande
     document.getElementById("containerBasket").innerHTML = '<div class="col fs-5">Votre panier est tristement vide... <b class="fs-3">:\'(</b></div>';
 }
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function() { //attente de la fin de chargement de la page pour appeler les fonctions
     basketCount();
-    if(document.getElementById("containerBasket")){
+    if(document.getElementById("containerBasket")){  //vérifie si on est sur la page panier pour lancer l'affichage du panier
         displayBasket();
     }
 });

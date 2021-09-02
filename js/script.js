@@ -27,7 +27,7 @@ function displayListProducts(arrayListProduct){
 }
 
 
-function displayCardProduct(product){
+function displayCardProduct(product){ //fonction d'affichage de la carte produit
     let cardProduct = document.createElement("div");
     cardProduct.classList.add("col", "mb-3");
     cardProduct.innerHTML = ('<div class="card"><img class="card-img-top" src="' + product.imageUrl + 
@@ -82,7 +82,7 @@ function getApiProduct(urlProduct){
             actualProduct = value;
             debug && console.log('Produit actuel V');
             debug && console.log(actualProduct);
-            displayProduct(value);
+            displayProduct(value); //appel de la fonction d'affichage de la fiche produit complète
         })
         .catch(function(err) {
             console.log(err);
@@ -96,7 +96,7 @@ function displayProduct(product){ //Affichage de la fiche produit complète
     document.querySelector("p.card-text").textContent = product.description;
     document.querySelector("p.h3").textContent = convertDisplayPrice(product.price);
 
-    for(let i in product.lenses){ // boucle pour parcourir le tableau
+    for(let i in product.lenses){ // boucle pour parcourir le tableau des options de personnalisation
         let lensesOption = document.createElement("option");       
         lensesOption.setAttribute("value", product.lenses[i]);
         lensesOption.innerHTML = product.lenses[i];
@@ -105,8 +105,7 @@ function displayProduct(product){ //Affichage de la fiche produit complète
 }
 
 
-
-function errorMessage(idParent, message){ //Fonction de message d'erreur
+function errorMessage(idParent, message){ //Fonction d'affichage de message d'erreur
     let divError = document.createElement("div");
     divError.classList.add("alert", "alert-danger");
     divError.setAttribute("role", "alert");
@@ -115,11 +114,11 @@ function errorMessage(idParent, message){ //Fonction de message d'erreur
 }
 
 
-window.addEventListener("load", function() {
-    if(document.getElementById("listArticle")){
-        connectApi();
+window.addEventListener("load", function() { //attente de la fin de chargement de la page pour appeler les fonctions
+    if(document.getElementById("listArticle")){ //vérifie si on est sur la page index pour lancer l'affichage des produits
+        connectApi(); 
     }
-    if(document.getElementById("productPage")){
+    if(document.getElementById("productPage")){ //vérifie si on est sur la page produit pour lancer l'affichage de la fiche produit
         getProduct();
     }
 });
