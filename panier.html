@@ -32,11 +32,30 @@
                     <h1>Votre panier</h1>
                 </div>
             </div>
-            <div id="listBasket" class="row mb-3">
-                <!--<div class="col">
-                    {contenu du panier}
-                    {Prix Total}
-                </div>-->
+            <div id="containerBasket" class="row mb-3">
+                <div class="col">
+                    <table id="tableBasket" class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Article</th>
+                                <th scope="col">Référence</th>
+                                <th scope="col" class="text-center">Prix</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableTbodyBasket">
+                            
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <th></th>
+                                <th>Total</th>
+                                <th id="totalBasket" class="table-active text-end">{value}</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>    
             </div>
             <div class="row mb-5">
                 <div class="col text-end">
