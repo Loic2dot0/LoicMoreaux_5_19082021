@@ -1,4 +1,4 @@
-var debug = false; // Active/Désactive les messages dans la console
+var debug = true; // Active/Désactive les messages dans la console
 var actualProduct = 0;
 
 //page Index
