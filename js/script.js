@@ -113,6 +113,15 @@ function errorMessage(idParent, message){ //Fonction d'affichage de message d'er
     document.getElementById(idParent).appendChild(divError);
 }
 
+function removeErrorMessage(idParent){
+    console.log(document.getElementById(idParent).lastElementChild.className);
+    if(document.getElementById(idParent).lastElementChild.className == "alert alert-danger"){
+        let divErrorParent = document.getElementById(idParent);
+        let divToDelete = document.getElementById(idParent).lastElementChild;
+        divErrorParent.removeChild(divToDelete);
+    }
+}
+
 
 window.addEventListener("load", function() { //attente de la fin de chargement de la page pour appeler les fonctions
     if(document.getElementById("listArticle")){ //vérifie si on est sur la page index pour lancer l'affichage des produits
