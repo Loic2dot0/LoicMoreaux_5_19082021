@@ -114,7 +114,7 @@ function errorMessage(idParent, message){ //Fonction d'affichage de message d'er
 }
 
 function removeErrorMessage(idParent){
-    console.log(document.getElementById(idParent).lastElementChild.className);
+    debug && console.log(document.getElementById(idParent).lastElementChild.className);
     if(document.getElementById(idParent).lastElementChild.className == "alert alert-danger"){
         let divErrorParent = document.getElementById(idParent);
         let divToDelete = document.getElementById(idParent).lastElementChild;
