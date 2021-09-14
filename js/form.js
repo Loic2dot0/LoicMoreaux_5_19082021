@@ -73,7 +73,6 @@ function send(){
 
 
 function sendLocalstorage(order){
-    myBasket.clear(); // vide le localstorage
     let orderLinear = JSON.stringify(order);
     myBasket.setItem("order", orderLinear);
 }

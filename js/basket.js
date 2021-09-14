@@ -17,8 +17,11 @@ function keyName(){ // fonction pour nommer les clés pour le localstorage
 }
 
 
-function basketCount(){ //fonction pour l'affichage du compteur du nombre d'article présent dans le panier
+function basketCount(init){ //fonction pour l'affichage du compteur du nombre d'article présent dans le panier
     let count = basketLength();
+    if(init == 1){
+        count= 0;
+    }
     let displayCount = document.getElementById("basketCount");
     if(count == 0){
         displayCount.innerHTML = "";
