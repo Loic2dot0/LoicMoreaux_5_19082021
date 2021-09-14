@@ -40,7 +40,7 @@ function verifyInput(idInput, regex){
 
 
 function send(){
-    fetch("http://localhost:3000/api/cameras/order:1", {
+    fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
