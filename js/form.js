@@ -40,13 +40,19 @@ function verifyInput(idInput, regex){
 
 
 function send(){
+    let data = {contact: contact, products: products };
+    
+    debug && console.log(products);
+    debug && console.log(contact);
+    debug && console.log(JSON.stringify(data));
+
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(products, contact)
+        body: JSON.stringify(data)
     })
     .then(function(res){
         if(res.ok){
@@ -54,13 +60,22 @@ function send(){
         }
     })
     .then(function(value){
-        console.log("Résultat de l'envoie :");
-        console.log(value);
+        let validOrder = value;
+        debug && console.log("Résultat de l'envoie :");
+        debug && console.log(validOrder);
+        sendLocalstorage(validOrder);
     })
     .catch(function(err) {
-        console.log('catch erreur : ');
+        debug && console.log('catch erreur : ');
         console.log(err);
     });
+}
+
+
+function sendLocalstorage(order){
+    myBasket.clear(); // vide le localstorage
+    let orderLinear = JSON.stringify(order);
+    myBasket.setItem("order", orderLinear);
 }
 
 
@@ -93,7 +108,7 @@ function listener() // fonction d'écoute des évènement sur le formulaire
             verifyInput(idCity, regexTextOnly) &&
             verifyInput(idZip, regexZip)){ // si tous les input sont valide
                 send(); //appel de la fonction d'envoie
-                evenement.preventDefault(); //for test a supprimer après
+                //evenement.preventDefault(); //for test a supprimer après
         }
         else evenement.preventDefault(); // annule le comportement par défaut du formulaire
     });    
