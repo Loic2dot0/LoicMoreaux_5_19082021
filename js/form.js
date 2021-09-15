@@ -60,10 +60,13 @@ function send(){
         }
     })
     .then(function(value){
-        let validOrder = value;
+        /*let validOrder = value;
         debug && console.log("Résultat de l'envoie :");
         debug && console.log(validOrder);
-        sendLocalstorage(validOrder);
+        sendLocalstorage(validOrder);*/
+
+        validOrder = JSON.stringify(value);
+        myBasket.setItem("order", validOrder);
     })
     .catch(function(err) {
         debug && console.log('catch erreur : ');
