@@ -40,11 +40,9 @@ function verifyInput(idInput, regex){
 
 
 function send(){
-    let data = {contact: contact, products: products };
-    
     debug && console.log(products);
     debug && console.log(contact);
-    debug && console.log(JSON.stringify(data));
+    debug && console.log(JSON.stringify({contact: contact, products: products }));
 
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
@@ -52,7 +50,7 @@ function send(){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({contact: contact, products: products })
     })
     .then(function(res){
         if(res.ok){
@@ -60,24 +58,14 @@ function send(){
         }
     })
     .then(function(value){
-        /*let validOrder = value;
-        debug && console.log("Résultat de l'envoie :");
-        debug && console.log(validOrder);
-        sendLocalstorage(validOrder);*/
-
-        validOrder = JSON.stringify(value);
+        let validOrder = JSON.stringify(value);
         myBasket.setItem("order", validOrder);
+        document.getElementById("form").submit(); //on soumet le formulaire
     })
     .catch(function(err) {
         debug && console.log('catch erreur : ');
         console.log(err);
     });
-}
-
-
-function sendLocalstorage(order){
-    let orderLinear = JSON.stringify(order);
-    myBasket.setItem("order", orderLinear);
 }
 
 
@@ -103,6 +91,7 @@ function listener() // fonction d'écoute des évènement sur le formulaire
     });
     
     document.forms[0].addEventListener("submit", (evenement)=> {
+        evenement.preventDefault(); // annule le comportement par défaut du formulaire
         if(verifyInput(idFirstname, regexTextOnly) &&
             verifyInput(idLastname, regexTextOnly) &&
             verifyInput(idEmail, regexEmail) &&
@@ -110,9 +99,7 @@ function listener() // fonction d'écoute des évènement sur le formulaire
             verifyInput(idCity, regexTextOnly) &&
             verifyInput(idZip, regexZip)){ // si tous les input sont valide
                 send(); //appel de la fonction d'envoie
-                //evenement.preventDefault(); //for test a supprimer après
         }
-        else evenement.preventDefault(); // annule le comportement par défaut du formulaire
     });    
 }
 
