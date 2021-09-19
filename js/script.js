@@ -1,8 +1,9 @@
+const urlApi = "http://localhost:3000/api/cameras/";
 var actualProduct = 0;
 
 //page Index
 function connectApi(){
-    fetch("http://localhost:3000/api/cameras") //Requete de type GET envoyer à l'API
+    fetch(urlApi) //Requete de type GET envoyer à l'API
         .then(function(res) { //test de la promise
             if (res.ok) {
                 return res.json(); //convertie le résultat en données JSON
@@ -46,7 +47,7 @@ function convertDisplayPrice(oldPrice){ // convertion de l'affichage du prix
 function getProduct(){ // fonction principale de la page produit
     let url = getUrl();
     let idProduct = getIdProduct(url);
-    let urlProduct = "http://localhost:3000/api/cameras/" + idProduct;
+    let urlProduct = urlApi + idProduct;
     getApiProduct(urlProduct);
   }
 

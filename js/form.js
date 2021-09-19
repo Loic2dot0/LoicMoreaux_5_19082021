@@ -39,7 +39,7 @@ function verifyInput(idInput, regex){
 
 
 function send(){
-    fetch("http://localhost:3000/api/cameras/order", {
+    fetch(urlApi + "order", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -54,7 +54,7 @@ function send(){
     })
     .then(function(value){
         let validOrder = JSON.stringify(value);
-        myBasket.setItem("order", validOrder);
+        localStorage.setItem("order", validOrder);
         document.getElementById("form").submit(); //on soumet le formulaire
     })
     .catch(function(err) {
