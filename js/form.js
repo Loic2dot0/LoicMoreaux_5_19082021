@@ -28,7 +28,6 @@ function verifyInput(idInput, regex){
     if(valueInput.match(regex)){
         input.style.border = "solid 3px #c3e6cb";
         contact[idInput] = valueInput;
-        debug && console.log(contact);
         return true;      
     }
     else{
@@ -40,10 +39,6 @@ function verifyInput(idInput, regex){
 
 
 function send(){
-    debug && console.log(products);
-    debug && console.log(contact);
-    debug && console.log(JSON.stringify({contact: contact, products: products }));
-
     fetch("http://localhost:3000/api/cameras/order", {
         method: "POST",
         headers: {
@@ -63,7 +58,6 @@ function send(){
         document.getElementById("form").submit(); //on soumet le formulaire
     })
     .catch(function(err) {
-        debug && console.log('catch erreur : ');
         console.log(err);
     });
 }

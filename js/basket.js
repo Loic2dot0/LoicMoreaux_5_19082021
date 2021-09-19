@@ -8,7 +8,6 @@ function basketLength(){ // fonction qui returne le nombre d'élément dans le p
 
 
 function keyName(){ // fonction pour nommer les clés pour le localstorage
-    //return 'article' + basketLength();
     let key = Math.floor(Math.random()*1000000); //génère une clé aléatoire
     while(myBasket.getItem(key)){ // Si la clé existe déjà on génère une nouvelle clé
         key = Math.floor(Math.random()*1000000);
@@ -36,7 +35,6 @@ function addBasket(){ //fonction pour ajouter un article dans le panier
     let key = keyName();
     let productLinear = JSON.stringify(actualProduct); //convertion du JSON en chaine de caractère
     myBasket.setItem(key, productLinear); //ajout du produit dans le localstorage
-    debug && console.log(key+ ' = ' +myBasket.getItem(key));
     basketCount(); //mise a jour de l'affichage du compteur
 }
 
@@ -62,13 +60,9 @@ function displayBasket(){ // fonction d'affichage du panier
         for(let i = 0; i < basketLength(); i++){ //parcours du localstorage pour afficher le contenu
             let article = myBasket.getItem(myBasket.key(i)); // récupération d'un produit
             article = JSON.parse(article); // conversion de la chaine de caractère au format JSON
-            debug && console.log('key product : ' +myBasket.key(i));
-            debug && console.log(article);
             displayRowBasket(article, myBasket.key(i)); // appel de la fonction d'affichage de la ligne du panier
             totalBasket += article.price; //mise a jour du prix total du panier
             products.push(article._id); //ajoute d'id de l'article dans un array pour la validation de la commande
-            debug && console.log("Total panier :" + convertDisplayPrice(totalBasket));
-            debug && console.log(products);
         }
         displayTotalPrice(); // appel de la fonction d'affichage du prix total du panier
     }

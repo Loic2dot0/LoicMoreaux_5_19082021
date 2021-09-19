@@ -1,4 +1,3 @@
-var debug = false; // Active/Désactive les messages dans la console
 var actualProduct = 0;
 
 //page Index
@@ -10,12 +9,10 @@ function connectApi(){
             }
         })
         .then(function(value) {
-            debug && console.log("Contenu de l'API V");
-            debug && console.log(value);
             displayListProducts(value); // appel de la fonction d'affichage de la liste des produits
         })
         .catch(function(err) {
-            console.log('catch erreur : ' +err);
+            console.log(err);
         });
 }
 
@@ -49,16 +46,13 @@ function convertDisplayPrice(oldPrice){ // convertion de l'affichage du prix
 function getProduct(){ // fonction principale de la page produit
     let url = getUrl();
     let idProduct = getIdProduct(url);
-    debug && console.log('Id produit : ' +idProduct);
     let urlProduct = "http://localhost:3000/api/cameras/" + idProduct;
-    debug && console.log('url du prduit : ' +urlProduct);
     getApiProduct(urlProduct);
   }
 
 
 function getUrl(){ // fonction pour récupérer l'url de la page actuelle
     let url = new URL(window.location.href);
-    debug && console.log('url de la page actuelle : ' +url);
     return url;
 }
 
@@ -80,8 +74,6 @@ function getApiProduct(urlProduct){
         })
         .then(function(value) {
             actualProduct = value;
-            debug && console.log('Produit actuel V');
-            debug && console.log(actualProduct);
             displayProduct(value); //appel de la fonction d'affichage de la fiche produit complète
         })
         .catch(function(err) {
@@ -114,7 +106,6 @@ function errorMessage(idParent, message){ //Fonction d'affichage de message d'er
 }
 
 function removeErrorMessage(idParent){
-    debug && console.log(document.getElementById(idParent).lastElementChild.className);
     if(document.getElementById(idParent).lastElementChild.className == "alert alert-danger"){
         let divErrorParent = document.getElementById(idParent);
         let divToDelete = document.getElementById(idParent).lastElementChild;
