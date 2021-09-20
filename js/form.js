@@ -1,6 +1,6 @@
-var regexText =  new RegExp(/^[\w\s-']+$/g);
-var regexTextOnly = new RegExp(/^[a-zA-Z\s-']+$/g);
-var regexEmail = new RegExp(/^[\w-\.]+@[a-zA-Z-0-9-]+\.[a-zA-Z]{2,6}$/g); // /^.+@.+\..+$/g
+var regexText =  new RegExp(/^[\w\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g); // RegExp(/^[\w\s-']+$/g)  àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ
+var regexTextOnly = new RegExp(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g);
+var regexEmail = new RegExp(/^[\w\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z]{2,6}$/g); // /^.+@.+\..+$/g
 var regexZip = new RegExp(/^\d{5}$/g);
 
 var contact = {
