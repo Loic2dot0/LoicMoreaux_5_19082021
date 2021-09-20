@@ -1,3 +1,4 @@
+//définition des différents regex
 var regexText =  new RegExp(/^[\w\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g); // RegExp(/^[\w\s-']+$/g)  àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ
 var regexTextOnly = new RegExp(/^[a-zA-Z\s'\-àáâãäæçèéêëìíîïñòóôõöùúûüýÿœÀÁÂÃÄÆÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÜŒ]+$/g);
 var regexEmail = new RegExp(/^[\w\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z]{2,6}$/g); // /^.+@.+\..+$/g
@@ -20,7 +21,7 @@ const idCity = "city";
 const idZip = "zip";
 
 
-function verifyInput(idInput, regex){
+function verifyInput(idInput, regex){ //vérification de la valididé des input
     let input = document.getElementById(idInput);
     let valueInput = input.value;
     removeErrorMessage("div" +idInput);
@@ -38,7 +39,7 @@ function verifyInput(idInput, regex){
 }
 
 
-function send(){
+function send(){ // fonction d'envoi du formulaire
     fetch(urlApi + "order", {
         method: "POST",
         headers: {
@@ -54,7 +55,7 @@ function send(){
     })
     .then(function(value){
         let validOrder = JSON.stringify(value);
-        localStorage.setItem("order", validOrder);
+        localStorage.setItem("order", validOrder); // on stocke la réponse du serveur dans le localstorage
         document.getElementById("form").submit(); //on soumet le formulaire
     })
     .catch(function(err) {

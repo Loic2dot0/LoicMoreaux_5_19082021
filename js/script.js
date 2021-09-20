@@ -6,7 +6,7 @@ function connectApi(){
     fetch(urlApi) //Requete de type GET envoyer à l'API
         .then(function(res) { //test de la promise
             if (res.ok) {
-                return res.json(); //convertie le résultat en données JSON
+                return res.json();
             }
         })
         .then(function(value) {
@@ -46,7 +46,7 @@ function convertDisplayPrice(oldPrice){ // convertion de l'affichage du prix
 //Page produit
 function getProduct(){ // fonction principale de la page produit
     let url = getUrl();
-    let idProduct = getIdProduct(url);
+    let idProduct = getIdProduct(url); //récupération de l'id du produit dans l'url
     let urlProduct = urlApi + idProduct;
     getApiProduct(urlProduct);
   }
@@ -70,7 +70,7 @@ function getApiProduct(urlProduct){
     fetch(urlProduct) //Requete de type GET envoyer à l'API
         .then(function(res) { //test de la promise
             if (res.ok) {
-                return res.json(); //convertie le résultat en données JSON
+                return res.json();
             }
         })
         .then(function(value) {
@@ -106,7 +106,7 @@ function errorMessage(idParent, message){ //Fonction d'affichage de message d'er
     document.getElementById(idParent).appendChild(divError);
 }
 
-function removeErrorMessage(idParent){
+function removeErrorMessage(idParent){ // fonction pour supprimer les messages d'erreur
     if(document.getElementById(idParent).lastElementChild.className == "alert alert-danger"){
         let divErrorParent = document.getElementById(idParent);
         let divToDelete = document.getElementById(idParent).lastElementChild;

@@ -1,7 +1,7 @@
 var totalBasket = 0; //variable pour le prix total du panier
-var products = [];
-if(localStorage.products){
-    products = JSON.parse(localStorage.products);
+var products = []; // variable pour stocker les id des produits du panier
+if(localStorage.products){ //vérifie si la variable products existe déjà dans le localStorage
+    products = JSON.parse(localStorage.products); // on récupère le contenu du localStorage
 }
 
 
@@ -23,7 +23,7 @@ function basketCount(){ //fonction pour l'affichage du compteur du nombre d'arti
 
 
 function addBasket(){ //fonction pour ajouter un article dans le panier
-    products.push(actualProduct._id);
+    products.push(actualProduct._id); // on ajoute l'id du produit dans le tableau products
     let productsLinear = JSON.stringify(products); //convertion du JSON en chaine de caractère
     localStorage.setItem('products', productsLinear); //ajout du produit dans le localstorage
     
@@ -32,16 +32,15 @@ function addBasket(){ //fonction pour ajouter un article dans le panier
 
 
 function removeBasket(key){ // fonction pour la suppression d'un article du panier
-    products.splice(key, 1);
-    console.log(products);
+    products.splice(key, 1); //supprime l'élement du tableau et réassigne les éléments
     let productsLinear = JSON.stringify(products); //convertion du JSON en chaine de caractère
-    localStorage.setItem('products', productsLinear);
+    localStorage.setItem('products', productsLinear); //ajout du produit dans le localstorage
     document.location.reload(); //Recharge la page pour actualiser le panier
 }
 
 
 function clearBasket(){ //fonction pour vider le panier
-    products = [];
+    products = []; // on vide le tableau de produits
     let productsLinear = JSON.stringify(products); //convertion du JSON en chaine de caractère
     localStorage.setItem('products', productsLinear);
     document.location.reload(); //Recharge la page pour actualiser le panier
@@ -55,22 +54,22 @@ function displayBasket(){ // fonction d'affichage du panier
     else{
         for(let i in products){
             let articleId = products[i];
-            getProductBasket(articleId, i);
+            getProductBasket(articleId, i); // appel de la fonction pour récupérer les article du panierd'après l'id
         }
     }
 }
 
 
-function getProductBasket(articleId, key){
+function getProductBasket(articleId, key){ //fonction pour récupérer les article du panierd'après l'id
     let urlProduct = urlApi + articleId;
     fetch(urlProduct) //Requete de type GET envoyer à l'API
         .then(function(res) { //test de la promise
             if (res.ok) {
-                return res.json(); //convertie le résultat en données JSON
+                return res.json();
             }
         })
         .then(function(article) {
-            displayRowBasket(article, key);
+            displayRowBasket(article, key); // appel de la fonction d'affichage de la ligne du panier
         })
         .catch(function(err) {
             console.log(err);
@@ -86,7 +85,7 @@ function displayRowBasket(article, key){ // fonction d'affichage d'une ligne du 
                         + '\')">Supprimer</button></td>');
     document.getElementById("tableTbodyBasket").appendChild(rowBasket);
     totalBasket += article.price; //mise a jour du prix total du panier
-    displayTotalPrice();
+    displayTotalPrice(); //appel de la fonction d'affichage du prix total du panier
 }
 
 
