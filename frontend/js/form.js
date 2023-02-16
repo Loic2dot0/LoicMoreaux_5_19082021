@@ -21,7 +21,7 @@ const idCity = "city";
 const idZip = "zip";
 
 
-function verifyInput(idInput, regex){ //vérification de la valididé des input
+function verifyInput(idInput, regex){ //vérification de la validité des input
     let input = document.getElementById(idInput);
     let valueInput = input.value;
     removeErrorMessage("div" +idInput);
