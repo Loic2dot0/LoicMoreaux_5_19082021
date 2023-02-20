@@ -2,7 +2,7 @@
 
 Student Project 5 for [OpenClassrooms](https://openclassrooms.com).
 
-Create an e-commerce site
+Create the frontend for an e-commerce site, using Bootstrap.
 
 ## Prerequisites
 
